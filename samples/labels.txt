@@ -1,0 +1,5 @@
+cell phone
+handbag
+laptop
+suitcase
+person
