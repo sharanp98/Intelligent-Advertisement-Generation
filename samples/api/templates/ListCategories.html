@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    
+    <script src = "https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script defer>
+        var reqd = [];
+        
+        function catlist(data) {
+            
+            data = JSON.parse({{ data | tojson }});
+            
+            var myDiv = document.getElementById("Categories");
+            
+            var iterator = data.values();
+            
+            
+            for (let elements of iterator) {
+                var myDiv = document.getElementById("Categories");
+                var button = document.createElement('BUTTON');
+                
+                button.id = elements;
+                button.onclick = function () { 
+                    // alert("This object's ID attribute is set to \"" + elements + "\".");
+                    reqd.push(elements);
+                    console.log(reqd);
+                }
+                var text = document.createTextNode(elements);
+                button.appendChild(text);
+                myDiv.appendChild(button);
+                
+            }
+            
+        }
+        
+        console.log(reqd);
+        
+        catlist({{ data| safe }})
+
+        // function dis() {
+ 
+        //     var fname = document.getElementById("fname").value;
+        //     reqd.push(fname);
+        //     }
+
+          
+        
+            function XX()
+        {
+        var off = document.getElementById("dis").value;
+        console.log(off);
+        reqd.push(off);
+        }
+        function sendjson() {
+            
+                // var script = document.createElement('script');
+                // script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
+                // script.type = 'text/javascript';
+                // document.getElementsByTagName('head')[0].appendChild(script);   
+            
+                $.post("reqjson", {canvas_data: JSON.stringify(reqd)});
+            
+                 // $.ajax(
+            //         {
+                //             type:'POST',
+                //             contentType:'application/json;charset-utf-08',
+                //             dataType:'json',
+                //             url:'http://127.0.0.1:5000/reqjson'+ jsonify(reqd) ,
+                //             success:function (data) {
+                    //                 var reply=data.reply;
+                    //                 if (reply=="success")
+                    //                 {
+                        //                     return;
+                        //                 }
+                        //                 else
+                        //                     {
+                            //                     alert("some error ocured in session agent")
+                            //                     }
+                            
+                            //             }
+                            //         }
+                            //     );
+                            
+                            
+                            
+                            // $.post(Flask.url_for('reqjson', {share: reqd}));
+                            
+                            }
+                            
+        function test(){
+            fs.writeFile('reqd_images.txt', reqd, (err) => { 
+            // In case of a error throw err. 
+            if (err) throw err; 
+            }) 
+        }
+                        </script>
+                    </head>
+                    
+                    
+                    <body>
+                        <h1>Smart AD</h1>
+                        <button type="button" onclick="catlist()">Get your Categories</button>
+                        <hr>
+                        <div id="Categories"></div>
+                        <hr>
+                        Add an offer: <input type="text" id="dis" name="dis" onchange="XX()">
+                        
+                                       
+                        <button type="button" onclick="sendjson()" value="submit">Submit</button>
+                        
+                        
+                    </body>
+                    
+                    </html>
