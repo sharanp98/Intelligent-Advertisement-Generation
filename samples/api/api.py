@@ -9,7 +9,7 @@ app = Flask(__name__)
 # jsglue = JSGlue(app)
 
 UPLOAD_FOLDER = 'C:/Users/Vivek/Desktop/MaskRCNN/samples'      
-DOWNLOAD_FOLDER = 'C:/Users/Vivek/Desktop/MaskRCNN/samples//api/static'                                  ##
+DOWNLOAD_FOLDER = 'C:/Users/Vivek/Desktop/MaskRCNN/samples/api/static'                                  ##
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
@@ -52,7 +52,7 @@ def hello_admin():
 def pass_val():
     name=request.form['canvas_data']
     print(name)
-    os.chdir('C:/Users/Vivek/Desktop/MaskRCNN/samples/')
+    os.chdir('/home/sharan/Desktop/Personal Projects/Mask_RCNN/samples/')
     f = open("reqd_images.txt","w")
     x = re.findall(r'[\w\d%!_ ]+', name)
     for i in x:
