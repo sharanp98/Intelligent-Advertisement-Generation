@@ -8,8 +8,8 @@ from werkzeug import secure_filename
 app = Flask(__name__)
 # jsglue = JSGlue(app)
 
-UPLOAD_FOLDER = '/home/sharan/Desktop/Personal Projects/Mask_RCNN/samples'      
-DOWNLOAD_FOLDER = '/home/sharan/Desktop/Personal Projects/Mask_RCNN/samples/api/static'                                  ##
+UPLOAD_FOLDER = 'C:/Users/Vivek/Desktop/MaskRCNN/samples'      
+DOWNLOAD_FOLDER = 'C:/Users/Vivek/Desktop/MaskRCNN/samples//api/static'                                  ##
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
@@ -41,6 +41,7 @@ def upload_file():
 
 @app.route('/final')
 def hello_admin():
+
     print('In final')
     os.chdir('/home/sharan/Desktop/Personal Projects/Mask_RCNN/samples/')
     os.system("python3 pt1.py")
@@ -51,7 +52,7 @@ def hello_admin():
 def pass_val():
     name=request.form['canvas_data']
     print(name)
-    os.chdir('/home/sharan/Desktop/Personal Projects/Mask_RCNN/samples/')
+    os.chdir('C:/Users/Vivek/Desktop/MaskRCNN/samples/')
     f = open("reqd_images.txt","w")
     x = re.findall(r'[\w\d%!_ ]+', name)
     for i in x:
@@ -60,15 +61,12 @@ def pass_val():
     f.close()
     os.system("python3 pt2.py")    
     os.system("python3 copyimage.py") 
-    return 'Success'
+    return redirect('/disp')
 
 @app.route('/disp')
 def disp():
     return render_template("displayimage.html")
 
-@app.route('/getfinal')
-def upload_form():
-	return render_template('download.html')
 
 @app.route('/download',methods=['GET', 'POST'])
 def download():

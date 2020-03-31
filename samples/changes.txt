@@ -1,0 +1,46 @@
+
+API FOLDER
+    -- added code at line 40,55: -- path specified
+        os.chdir('C:/Users/Vivek/Desktop/MaskRCNN/samples')
+        /samples/labels.txt & /samples/reqd_images.txt are being opened instead of /api/labels.txt & /api/reqd_images.txt
+
+    -- added code at line 10,11: -- path specified
+        UPLOAD_FOLDER = 'C:/Users/Vivek/Desktop/MaskRCNN/samples'      
+        DOWNLOAD_FOLDER = 'C:/Users/Vivek/Desktop/MaskRCNN/samples/api/static'   
+    
+    -- added app-routes = 'download' 'getfinal'
+
+    -- added directory static
+
+    -- added files:
+        download.html at '/templates'
+
+    -- specified python version at line 43, 60 as 'python3'
+
+    -- deleted directory 'uploads' and its contents - sample.jpg.
+    
+    -- deleted dummy.py
+
+
+
+SAMPLES FOLDER
+
+    --added script copyimages.py -- Path specified
+    --added text file changes.txt
+
+What you have to do:
+--Directly run api.py 
+        this should autimatically execute the scripts pt1.py & pt2.py in background
+--If error occurs please check the path and configure. All path specified codes are written above. 
+
+
+
+  
+
+
+
+
+
+
+
+    
