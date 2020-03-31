@@ -1,5 +1,4 @@
-handbag
-laptop
-suitcase
-person
-cell phone
+dining table
+bowl
+potted plant
+chair

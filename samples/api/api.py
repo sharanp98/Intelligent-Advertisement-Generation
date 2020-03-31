@@ -35,29 +35,25 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            print('Image Uploaded')
             return  redirect('/final')
     return render_template("upload_image.html") 
 
 @app.route('/final')
 def hello_admin():
+    print('In final')
     os.chdir('/home/sharan/Desktop/Personal Projects/Mask_RCNN/samples/')
-    os.system("python3 pt1.py")                                                               ##
-    f = open("labels.txt","r")
-    st = f.read()
-    data = st.split()
-
+    os.system("python3 pt1.py")
+    data = open('labels.txt').read().splitlines()
     return render_template("ListCategories.html",data=json.dumps(data))
-    f.close()
-
-
-
+    
 @app.route('/reqjson',methods=['POST'])
 def pass_val():
     name=request.form['canvas_data']
     print(name)
     os.chdir('/home/sharan/Desktop/Personal Projects/Mask_RCNN/samples/')
     f = open("reqd_images.txt","w")
-    x = re.findall(r'[\w\d%!_]+', name)
+    x = re.findall(r'[\w\d%!_ ]+', name)
     for i in x:
         f.write(i)
         f.write("\n")

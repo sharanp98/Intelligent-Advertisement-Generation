@@ -82,9 +82,10 @@ for file in os.listdir('./segmented_images'):
     if file.endswith(".png"):
         labels.append(file.split('_')[0])
 labels = list(set(labels))
+print("Labels written to the file:\n",labels)
 
 with open('labels.txt', 'w') as f:
     for item in labels:
         f.write("%s\n" % item)
 
-print(os.getcwd())
+print(os.getcwd())  

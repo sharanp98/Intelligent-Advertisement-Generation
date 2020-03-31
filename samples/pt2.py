@@ -5,7 +5,9 @@ import glob
 
 with open('reqd_images.txt', 'r') as f:
     reqd_images = f.read().splitlines()
+print(reqd_images)
 offer = reqd_images[-1]
+print(offer)
 for file in os.listdir('./segmented_images'):
     if file.endswith(".png"):
         if file.split('_')[0] not in reqd_images:
