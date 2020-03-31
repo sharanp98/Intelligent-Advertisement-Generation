@@ -8,8 +8,8 @@ from werkzeug import secure_filename
 app = Flask(__name__)
 # jsglue = JSGlue(app)
 
-UPLOAD_FOLDER = 'C:/Users/Vivek/Desktop/MaskRCNN/samples'      
-DOWNLOAD_FOLDER = 'C:/Users/Vivek/Desktop/MaskRCNN/samples/api/static'                                  ##
+UPLOAD_FOLDER = '/home/sharan/Desktop/Personal Projects/Mask_RCNN/samples/'      
+DOWNLOAD_FOLDER = '/home/sharan/Desktop/Personal Projects/Mask_RCNN/samples/api/static'                                  ##
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
