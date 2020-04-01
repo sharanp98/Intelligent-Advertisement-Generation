@@ -3,14 +3,17 @@ from PIL import Image, ImageChops,ImageDraw,ImageFont
 import numpy as np
 import glob 
 
-with open('reqd_images.txt', 'r') as f:
-    reqd_images = f.read().splitlines()
-print(reqd_images)
-offer = reqd_images[-1]
+with open(os.getcwd()+'/reqd_images.txt', 'r') as f:
+    print('File Found')
+    reqd = f.read().splitlines()
+    print(f.read())
+print(reqd)
+offer = reqd[-1]
 print(offer)
+
 for file in os.listdir('./segmented_images'):
     if file.endswith(".png"):
-        if file.split('_')[0] not in reqd_images:
+        if file.split('_')[0] not in reqd:
             os.remove('./segmented_images/'+file)
 
 os.chdir('./segmented_images')
@@ -78,5 +81,5 @@ def process_img(img_src, title):
     draw.text((text_w, text_h), title, (255,255,255),font=font)
     img_dest = img.save('final.png')
     return img_dest
-process_img('merged_gradient.png','Flat 20% OFF!!')
+process_img('merged_gradient.png',offer)
 print('Success!')

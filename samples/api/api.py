@@ -56,11 +56,11 @@ def pass_val():
     x = re.findall(r'[\w\d%!_ ]+', name)
     for i in x:
         f.write(i)
-        f.write("\n")
+        f.write("\n")                                                          
     f.close()
     os.system("python3 pt2.py")    
     os.system("python3 copyimage.py") 
-    return redirect('/disp')
+    return 'Success'
 
 @app.route('/disp')
 def disp():
