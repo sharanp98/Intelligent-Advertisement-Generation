@@ -36,7 +36,7 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             print('Image Uploaded')
-            return  redirect('/final')
+            return redirect('/final')
     return render_template("upload_image.html") 
 
 @app.route('/final')
@@ -46,7 +46,7 @@ def hello_admin():
     os.system("python3 pt1.py")
     data = open('labels.txt').read().splitlines()
     return render_template("ListCategories.html",data=json.dumps(data))
-    
+
 @app.route('/reqjson',methods=['POST'])
 def pass_val():
     name=request.form['canvas_data']
@@ -57,14 +57,13 @@ def pass_val():
     for i in x:
         f.write(i)
         f.write("\n")
-    os.system("python3 pt2.py")    
-    os.system("python3 copyimage.py")                                                            ##
     f.close()
-    return 'Success'
+    os.system("python3 pt2.py")    
+    os.system("python3 copyimage.py") 
+    return redirect('/disp')
 
 @app.route('/disp')
 def disp():
-   
     return render_template("displayimage.html")
 
 @app.route('/getfinal')
