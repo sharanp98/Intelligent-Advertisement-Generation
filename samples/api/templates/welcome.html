@@ -1,0 +1,111 @@
+<html>
+<head>
+<style>
+    /* Google Fonts */
+@import url(https://fonts.googleapis.com/css?family=Barlow);
+
+/* Global */
+html{
+  min-height: 100%;
+  overflow: hidden;
+}
+body{
+  height: 100%;
+  margin: 0;
+  font-family: 'Barlow';
+  font-size: 22px;
+}
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: #33ff33;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:active {
+  color: #33ff33;
+  background-color: transparent;
+  text-decoration: underline;
+}
+.bg-image {
+  /* The image used */
+  background-image: url({{ url_for('static', filename='img/bg4.png') }}); 
+  /* background-color:#006b38ff; */
+  
+  /* Add the blur effect */
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  
+  /* Full height */
+  height: 100%; 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Position text in the middle of the page/image */
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  font-family: 'Barlow';
+  font-size: 22px;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+}
+.line-1{
+    position: relative;
+    top: 50%;  
+    width: 24em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 180%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 3s steps(40) 1s 1 normal both,
+             blinkTextCursor 500ms steps(40) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 10em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,.75);}
+  to{border-right-color: transparent;}
+}
+</style>
+</head>
+<body>
+    <div class = "bg-image"></div>
+    <div class = "bg-text">
+    <p class="line-1 anim-typewriter">Welcome to Adgency...</p>
+    <a href="{{ url_for('.upload_file') }}">lets go-></a>
+</div>
+    
+</body>
+
+</html>

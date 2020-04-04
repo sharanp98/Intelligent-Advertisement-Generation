@@ -3,12 +3,123 @@
 
 
 <head>
+<link href='https://fonts.googleapis.com/css?family=Barlow' rel='stylesheet'>
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Barlow';
+  font-size: 22px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-image {
+  /* The image used */
+  background-image: url({{ url_for('static', filename='img/bg4.png') }}); 
+  /* background-color:#006b38ff; */
+  
+  /* Add the blur effect */
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  
+  /* Full height */
+  height: 100%; 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Position text in the middle of the page/image */
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  font-family: 'Barlow';
+  font-size: 22px;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+}
+
+.getcat {
+text-align: center;
+}
+.b {
+  background-color: black; 
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-family: 'Barlow';
+  font-size: 22px;
+}
+
+.b1 {
+  padding: 16px 32px;
+  background-color: w; 
+  color: white; 
+  border-radius: 8px;
+  font-family: 'Barlow';
+  font-size: 22px;
+}
+
+.b1:hover {
+  background-color: white;
+  color: black;
+}
+
+.b2 {
+  padding: 10px 32px;
+  background-color: w; 
+  color: white; 
+  border: 0px solid black;
+  border-radius: 6px;
+  font-family: 'Barlow';
+  font-size: 22px;
+}
+
+.b2:hover {
+  background-color: white;
+  color: black;
+}
+.b3 {
+  padding: 10px 20px;
+  background-color: w; 
+  color: white; 
+  border: 0px solid black;
+  border-radius: 8px;
+  font-family: 'Barlow';
+  font-size: 22px;
+
+}
+</style>
     
     <script src = "https://code.jquery.com/jquery-3.4.1.js"></script>
     <script defer>
+        
         var reqd = [];
         
         function catlist(data) {
+            
             
             data = JSON.parse({{ data | tojson }});
             
@@ -22,8 +133,10 @@
                 var button = document.createElement('BUTTON');
                 
                 button.id = elements;
+                button.className = "b b1";
                 button.onclick = function () { 
-                    // alert("This object's ID attribute is set to \"" + elements + "\".");
+                    this.style.backgroundColor = "#33ff33";
+                    this.style.color = "black";
                     reqd.push(elements);
                     console.log(reqd);
                 }
@@ -54,39 +167,8 @@
         reqd.push(off);
         }
         function sendjson() {
-            
-                // var script = document.createElement('script');
-                // script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
-                // script.type = 'text/javascript';
-                // document.getElementsByTagName('head')[0].appendChild(script);   
-            
                 $.post("reqjson", {canvas_data: JSON.stringify(reqd)});
             
-                 // $.ajax(
-            //         {
-                //             type:'POST',
-                //             contentType:'application/json;charset-utf-08',
-                //             dataType:'json',
-                //             url:'http://127.0.0.1:5000/reqjson'+ jsonify(reqd) ,
-                //             success:function (data) {
-                    //                 var reply=data.reply;
-                    //                 if (reply=="success")
-                    //                 {
-                        //                     return;
-                        //                 }
-                        //                 else
-                        //                     {
-                            //                     alert("some error ocured in session agent")
-                            //                     }
-                            
-                            //             }
-                            //         }
-                            //     );
-                            
-                            
-                            
-                            // $.post(Flask.url_for('reqjson', {share: reqd}));
-                            
                             }
                             
         function test(){
@@ -95,22 +177,32 @@
             if (err) throw err; 
             }) 
         }
+        
+        //////////////////////////////////////////////Front End//////////////////////
+       
+///////////////////////////////////////////////////////////////////////////////////////
                         </script>
                     </head>
                     
                     
                     <body>
+                        <div class="bg-image"></div>
+                        <div class="bg-text">
+                        
                         <h1>Smart AD</h1>
-                        <button type="button" onclick="catlist()">Get your Categories</button>
+
+                        <div class="getcat">
+                        <button type="button" onclick="catlist()" class="b b2">Get your Categories</button>
+                        
                         <hr>
                         <div id="Categories"></div>
                         <hr>
                         Add an offer: <input type="text" id="dis" name="dis" onchange="XX()">
                         
                                        
-                        <button type="button" onclick="sendjson()" value="submit">Submit</button>
-                        
-                        
+                        <a href="{{ url_for('.disp') }}"><button type="button" onclick="sendjson()" value="submit" class="b b3">Submit</button></a>
+                        </div>
+                        </div>
                     </body>
                     
                     </html>
