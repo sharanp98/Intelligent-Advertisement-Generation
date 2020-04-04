@@ -4,12 +4,8 @@ import numpy as np
 import glob 
 
 with open(os.getcwd()+'/reqd_images.txt', 'r') as f:
-    print('File Found')
     reqd = f.read().splitlines()
-    print(f.read())
-print(reqd)
 offer = reqd[-1]
-print(offer)
 
 for file in os.listdir('./segmented_images'):
     if file.endswith(".png"):
