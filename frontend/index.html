@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Agency - Start Bootstrap Theme</title>
+  <title>Adgency - Intelligent Advertising</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -63,7 +63,14 @@
       <div class="intro-text">
         <div class="intro-lead-in">Welcome To Our Studio!</div>
         <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
-        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+        <form method="POST" enctype="multipart/form-data">
+          <label>
+            <input type="file" onchange="form.submit()" style="display: none;">
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger">Upload Image</a>
+          </label>
+        </form>
+
+        <!-- <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a> -->
       </div>
     </div>
   </header>
