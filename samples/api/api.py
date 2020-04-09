@@ -8,8 +8,9 @@ from werkzeug import secure_filename
 app = Flask(__name__)
 # jsglue = JSGlue(app)
 
-UPLOAD_FOLDER = 'C:/Users/Vivek/Desktop/MaskRCNN/samples/'      
-DOWNLOAD_FOLDER = 'C:/Users/Vivek/Desktop/MaskRCNN/samples/api/static'                                  ##
+WORKING_FOLDER = os.path.dirname(os.getcwd()) #samples
+UPLOAD_FOLDER =  WORKING_FOLDER
+DOWNLOAD_FOLDER = os.path.join(WORKING_FOLDER,'api/static')                                 ##
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
@@ -34,7 +35,7 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], 'sample.jpg'))
             print('Image Uploaded')
             return redirect('/final')
     return render_template("upload_image.html") 
@@ -43,8 +44,15 @@ def upload_file():
 def hello_admin():
 
     print('In final')
-    os.chdir('C:/Users/Vivek/Desktop/MaskRCNN/samples/')
-    #os.system("python3 pt1.py")
+    os.chdir(WORKING_FOLDER)
+    #Delete previous output
+    for file in os.listdir():
+        if file in ['labels.txt','reqd_images.txt']:
+            os.remove(file)
+    for file in os.listdir('segmented_images'):
+        if file != 'background.jpeg':
+            os.remove(os.path.join('segmented_images',file))
+    os.system("python3 pt1.py")
     data = open('labels.txt').read().splitlines()
     return render_template("ListCategories.html",data=json.dumps(data))
 
@@ -52,15 +60,15 @@ def hello_admin():
 def pass_val():
     name=request.form['canvas_data']
     print(name)
-    os.chdir('C:/Users/Vivek/Desktop/MaskRCNN/samples/')
+    os.chdir(WORKING_FOLDER)
     f = open("reqd_images.txt","w")
     x = re.findall(r'[\w\d%!_ ]+', name)
     for i in x:
         f.write(i)
         f.write("\n")                                                          
     f.close()
-    #os.system("python3 pt2.py")    
-    #os.system("python3 copyimage.py") 
+    os.system("python3 pt2.py")    
+    os.system("python3 copyimage.py") 
     return redirect('/disp')
 
 @app.route('/disp')
@@ -70,8 +78,6 @@ def disp():
 @app.route('/')
 def welcome():
     return render_template("welcome.html")
-
-
 
 @app.route('/download',methods=['GET', 'POST'])
 def download():

@@ -68,14 +68,28 @@ background = background.resize(size,Image.ANTIALIAS)
 background.paste(img, (0, 0), img)
 background.save('merged_gradient.png',"PNG")
 
-def process_img(img_src, title):
-    img = Image.open(img_src, 'r')
-    draw = ImageDraw.Draw(img)
-    w, h = img.size
-    font = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeMono.ttf", 50)
-    text_w, text_h = w//2, h-h//10
-    draw.text((text_w, text_h), title, (255,255,255),font=font)
-    img_dest = img.save('final.png')
-    return img_dest
-process_img('merged_gradient.png',offer)
+def process_img(txt):
+    image = Image.open('merged_gradient.png')
+    draw = ImageDraw.Draw(image)
+    w, h = image.size
+    fontsize = 1  # starting font size
+
+    # portion of image width you want text width to be
+    img_fraction = 0.50
+    font_path = "/usr/share/fonts/truetype/freefont/FreeMono.ttf"
+    font = ImageFont.truetype(font_path, fontsize)
+    while font.getsize(txt)[0] < img_fraction*image.size[0]:
+        # iterate until the text size is just larger than the criteria
+        fontsize += 1
+        font = ImageFont.truetype(font_path, fontsize)
+
+    # optionally de-increment to be sure it is less than criteria
+    fontsize -= 1
+    font = ImageFont.truetype(font_path, fontsize)
+    # text_w, text_h = w//2, h-h//20
+
+    print ('final font size',fontsize)
+    draw.text((10,25), txt, font=font) # put the text on the image
+    image.save('final.png') # save it
+process_img(offer)
 print('Success!')

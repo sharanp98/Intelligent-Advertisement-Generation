@@ -1,4 +1,6 @@
-dining table
-chair
-bowl
 potted plant
+book
+vase
+keyboard
+laptop
+dining table
