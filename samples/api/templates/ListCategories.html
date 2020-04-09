@@ -117,10 +117,28 @@ text-align: center;
     <script defer>
         
         var reqd = [];
+        Array.prototype.remove = function() {
+          var what, a = arguments, L = a.length, ax;
+          while (L && this.length) {
+          what = a[--L];
+          while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+            }
+          }
+          return this;
+        };
+
+        function include(arr, obj) {
+          for (var i = 0; i < arr.length; i++) {
+          if (arr[i] == obj) return 1;
+          }
+          return 0;
+        }
         
         function catlist(data) {
+          document.getElementById("getcategories").style.visibility= 'hidden';
             
-            
+            //document.getElementById("getcategories").disabled=true;   
             data = JSON.parse({{ data | tojson }});
             
             var myDiv = document.getElementById("Categories");
@@ -134,10 +152,31 @@ text-align: center;
                 
                 button.id = elements;
                 button.className = "b b1";
+                button.value = "OFF";
                 button.onclick = function () { 
+                    
+                    
+                    if(this.value=="OFF"){
+                    this.value="ON";
                     this.style.backgroundColor = "#33ff33";
                     this.style.color = "black";
-                    reqd.push(elements);
+
+                    }
+
+                    else if(this.value=="ON"){
+                    this.value="OFF";
+                    this.style.backgroundColor = "black";
+                    this.style.color = "white";
+                    
+                    }
+                    
+                    if(include(reqd,elements)){
+                    reqd.remove(elements);
+                    }
+                    else
+                    {
+                      reqd.push(elements);
+                    }
                     console.log(reqd);
                 }
                 var text = document.createTextNode(elements);
@@ -152,11 +191,7 @@ text-align: center;
         
         catlist({{ data| safe }})
 
-        // function dis() {
- 
-        //     var fname = document.getElementById("fname").value;
-        //     reqd.push(fname);
-        //     }
+        
 
           
         
@@ -177,7 +212,7 @@ text-align: center;
             if (err) throw err; 
             }) 
         }
-        
+       
         //////////////////////////////////////////////Front End//////////////////////
        
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -192,7 +227,7 @@ text-align: center;
                         <h1>Smart AD</h1>
 
                         <div class="getcat">
-                        <button type="button" onclick="catlist()" class="b b2">Get your Categories</button>
+                        <button type="button" onclick="catlist()" class="b b2" id="getcategories">Get your Categories</button>
                         
                         <hr>
                         <div id="Categories"></div>
