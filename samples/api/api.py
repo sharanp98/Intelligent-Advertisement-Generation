@@ -46,13 +46,13 @@ def hello_admin():
     print('In final')
     os.chdir(WORKING_FOLDER)
     #Delete previous output
-    for file in os.listdir():
-        if file in ['labels.txt','reqd_images.txt']:
-            os.remove(file)
-    for file in os.listdir('segmented_images'):
-        if file != 'background.jpeg':
-            os.remove(os.path.join('segmented_images',file))
-    os.system("python3 pt1.py")
+    # for file in os.listdir():
+    #     if file in ['labels.txt','reqd_images.txt']:
+    #         os.remove(file)
+    # for file in os.listdir('segmented_images'):
+    #     if file != 'background.jpeg':
+    #         os.remove(os.path.join('segmented_images',file))
+    # os.system("python3 pt1.py")
     data = open('labels.txt').read().splitlines()
     return render_template("ListCategories.html",data=json.dumps(data))
 
@@ -67,8 +67,8 @@ def pass_val():
         f.write(i)
         f.write("\n")                                                          
     f.close()
-    os.system("python3 pt2.py")    
-    os.system("python3 copyimage.py") 
+    #os.system("python3 pt2.py")    
+    #os.system("python3 copyimage.py") 
     return redirect('/disp')
 
 @app.route('/disp')
@@ -82,6 +82,26 @@ def welcome():
 @app.route('/download',methods=['GET', 'POST'])
 def download():
     return send_from_directory(directory= DOWNLOAD_FOLDER, filename='final.png')
+
+@app.route('/demo',methods=['GET', 'POST'])
+def demo():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            #flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file.filename == '':
+            #flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], 'sample.jpg'))
+            print('Image Uploaded')
+            return redirect('/final')
+    return render_template("upload2.html") 
 
 if __name__ == '__main__':
    app.run()
