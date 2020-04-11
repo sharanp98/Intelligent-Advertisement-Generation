@@ -56,3 +56,7 @@ pip-delete-this-directory.txt
 .venv
 venv/
 ENV/
+
+# files generated with neural network
+samples/labels.txt
+samples/reqd_images.txt
