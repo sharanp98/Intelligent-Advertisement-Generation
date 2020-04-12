@@ -1,2 +1,3 @@
 import shutil
-shutil.copy('/home/sharan/Desktop/Personal Projects/Mask_RCNN/samples/segmented_images/final.png','/home/sharan/Desktop/Personal Projects/Mask_RCNN/samples/api/static')
+shutil.copy('segmented_images/final.png','api/static')
+print('Copied Final successfully')

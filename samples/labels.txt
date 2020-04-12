@@ -1,4 +1,6 @@
-hello
-world
-abc
-def
+laptop
+potted plant
+vase
+keyboard
+book
+dining table
