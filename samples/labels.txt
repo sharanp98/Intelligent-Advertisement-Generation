@@ -1,6 +1,3 @@
-laptop
+person
 potted plant
-vase
-keyboard
-book
-dining table
+car

@@ -21,9 +21,25 @@
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
   <!-- Custom styles for this template -->
-  <link href="static/css/agency.min.css" rel="stylesheet">
+  <link href="static/css/agency.css" rel="stylesheet">
 
 </head> 
+
+<style>
+  #myProgress {
+    visibility: hidden;
+    width: 100%;
+    background-color: white;
+  }
+  
+  #myBar {
+    visibility: hidden;
+    width: 1%;
+    height: 30px;
+    background-color: #fed136;
+  }
+</style>
+
 <body id="page-top">
 
     <!-- Navigation -->
@@ -60,10 +76,13 @@
       <div class="intro-text">
         <div class="intro-lead-in">Welcome To Our Studio!</div>
         <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
+        <div id="myProgress">
+          <div id="myBar"></div>
+        </div>
         <form method=post enctype=multipart/form-data>
             <label>
             <input type="file" name=file style="visibility:hidden;" onchange="form.submit()"><br>
-            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger">Upload Image</a>
+            <a onclick="move()" class="btn btn-primary btn-xl text-uppercase js-scroll-trigger">Upload Image</a>
            
             </label>
         </form>
@@ -701,6 +720,29 @@
     </div>
   </div>
 
+
+  <script>
+    var i = 0;
+    function move() {
+      document.querySelector('#myProgress').style.visibility = "visible";
+      document.querySelector('#myBar').style.visibility = "visible";
+      if (i == 0) {
+        i = 1;
+        var elem = document.getElementById("myBar");
+        var width = 1;
+        var id = setInterval(frame, 10);
+        function frame() {
+          if (width >= 100) {
+            clearInterval(id);
+            i = 0;
+          } else {
+            width = width+0.03;
+            elem.style.width = width + "%";
+          }
+        }
+      }
+    }
+  </script>
   <!-- Bootstrap core JavaScript -->
   <script src="static/vendor/jquery/jquery.min.js"></script>
   <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -714,10 +756,6 @@
 
   <!-- Custom scripts for this template -->
   <script src="static/js/agency.min.js"></script>
-
-
-  
-
 
 </body>
 
