@@ -26,18 +26,30 @@
 </head> 
 
 <style>
-  #myProgress {
-    visibility: hidden;
-    width: 100%;
-    background-color: white;
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #dfc;
+  border-color: #dfc transparent #dfc transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  #myBar {
-    visibility: hidden;
-    width: 1%;
-    height: 30px;
-    background-color: #fed136;
+  100% {
+    transform: rotate(360deg);
   }
+}
 </style>
 
 <body id="page-top">
@@ -76,10 +88,8 @@
       <div class="intro-text">
         <div class="intro-lead-in">Welcome To Our Studio!</div>
         <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
-        <div id="myProgress">
-          <div id="myBar"></div>
-        </div>
-        <form method=post enctype=multipart/form-data>
+        <div style="display:none;" class="lds-dual-ring"></div>
+        <form id="#upload_image" method=post enctype=multipart/form-data>
             <label>
             <input type="file" name=file style="visibility:hidden;" onchange="form.submit()"><br>
             <a onclick="move()" class="btn btn-primary btn-xl text-uppercase js-scroll-trigger">Upload Image</a>
@@ -724,23 +734,8 @@
   <script>
     var i = 0;
     function move() {
-      document.querySelector('#myProgress').style.visibility = "visible";
-      document.querySelector('#myBar').style.visibility = "visible";
-      if (i == 0) {
-        i = 1;
-        var elem = document.getElementById("myBar");
-        var width = 1;
-        var id = setInterval(frame, 10);
-        function frame() {
-          if (width >= 100) {
-            clearInterval(id);
-            i = 0;
-          } else {
-            width = width+0.03;
-            elem.style.width = width + "%";
-          }
-        }
-      }
+      document.querySelector('.lds-dual-ring').style.display = "inline-block ";
+      document.querySelector("#upload_image").style.visibility = "hidden";
     }
   </script>
   <!-- Bootstrap core JavaScript -->
