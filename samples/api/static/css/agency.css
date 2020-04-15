@@ -681,3 +681,10 @@ ul.social-buttons li a {
 ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
   background-color: #fed136;
 }
+
+.ad-logo{ 
+  position: fixed;
+  bottom: 0;
+  right: 100px;
+  width: 200px;}
+

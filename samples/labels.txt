@@ -1,6 +1,4 @@
-laptop
-potted plant
-vase
-keyboard
-book
-dining table
+car
+bike
+hello
+world

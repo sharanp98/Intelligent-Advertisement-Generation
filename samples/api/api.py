@@ -20,7 +20,7 @@ def allowed_file(filename):
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-@app.route('/upload', methods=['GET', 'POST'])
+@app.route('/no-need', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
@@ -46,13 +46,15 @@ def hello_admin():
     print('In final')
     os.chdir(WORKING_FOLDER)
     #Delete previous output
-    for file in os.listdir():
-        if file in ['labels.txt','reqd_images.txt']:
-            os.remove(file)
+    # for file in os.listdir():
+    #     if file in ['labels.txt','reqd_images.txt']:
+    #         os.remove(file)
+   
+    
     for file in os.listdir('segmented_images'):
         if file != 'background.jpeg':
             os.remove(os.path.join('segmented_images',file))
-    os.system("python3 pt1.py")
+    # os.system("python3 pt1.py")
     data = open('labels.txt').read().splitlines()
     return render_template("ListCategories.html",data=json.dumps(data))
 
@@ -67,25 +69,27 @@ def pass_val():
         f.write(i)
         f.write("\n")                                                          
     f.close()
-    os.system("python3 pt2.py")
+    # os.system("python3 pt2.py")
     # os.remove("api/static/final.png")    
-    os.system("python3 copyimage.py") 
+    # os.system("python3 copyimage.py") 
     return redirect('/disp')
 
 @app.route('/disp')
 def disp():
     return render_template("displayimage.html")
 
-@app.route('/')
-def welcome():
-    return render_template("welcome.html")
 
 @app.route('/download',methods=['GET', 'POST'])
 def download():
     return send_from_directory(directory= DOWNLOAD_FOLDER, filename='final.png')
 
-@app.route('/demo',methods=['GET', 'POST'])
+@app.route('/',methods=['GET', 'POST'])
 def demo():
+    
+    os.chdir(DOWNLOAD_FOLDER)
+    for file in os.listdir():
+        if file in ['final.png']:
+            os.remove(file)
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
