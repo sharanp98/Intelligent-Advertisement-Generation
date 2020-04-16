@@ -76,7 +76,7 @@ def process_img(txt):
 
     # portion of image width you want text width to be
     img_fraction = 0.50
-    font_path = "/usr/share/fonts/truetype/freefont/FreeMono.ttf"
+    font_path = "/usr/share/fonts/truetype/freefont/AmaticSC-Regular.ttf"
     font = ImageFont.truetype(font_path, fontsize)
     while font.getsize(txt)[0] < img_fraction*image.size[0]:
         # iterate until the text size is just larger than the criteria
