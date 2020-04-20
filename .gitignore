@@ -58,5 +58,8 @@ venv/
 ENV/
 
 # files generated with neural network
-samples/labels.txt
-samples/reqd_images.txt
+./samples/labels.txt
+./samples/reqd_images.txt
+./samples/api/static/final.png
+./samples/labels.txt
+
