@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="static/img/logo/new-icon.ico" />
+    <title>Download</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../static/css/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/agency.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Barlow' rel='stylesheet'>
+
+    <style>
+		body,html {
+			height: 100%;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		.bg-image {
+      border: 1px solid black;
+			/* The image used */
+			background-image: url("../static/img/header-bg.jpg");
+
+			/* Add the blur effect */
+			filter: blur(5px);
+			-webkit-filter: blur(5px);
+
+			/* Full height */
+			height: 100%;
+
+			/* Center and scale the image nicely */
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+
+		/* Position text in the middle of the page/image */
+		.bg-text {
+			color: white;
+			/* border: 3px solid #f1f1f1; */
+      position: absolute;
+      font-family: 'Kaushan Script';
+			font-size: 22px;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 2;
+			width: 80%;
+			padding: 20px;
+			text-align: center;
+    }
+    .container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    .ad-logo{ 
+			position: fixed;
+			top: 50px;
+			left: 70px;
+			width: 160px;}
+    
+	</style>
+  </head>
+  <body>
+    <div class="bg-image"></div>
+    <div class="bg-text">
+      <a href="../static/final2.png"></a>
+      <img src="../static/final2.png" alt="User Image"> <br/><br/>
+      <a href = "../static/final2.png" style="font-weight: 700;" class = "btn btn-primary btn-xl text-uppercase" download>Download</a>
+      
+    </div>
+    <img src="static\img\logo\new-full.png" class="ad-logo" />
+
+  <!-- <h2>Download your final image below</h2>
+
+  <p>
+    <a href="{{ url_for('.download') }}">Download</a>
+  </p> -->
+  </body>
+</html>
+

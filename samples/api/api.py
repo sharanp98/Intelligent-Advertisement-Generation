@@ -108,5 +108,32 @@ def demo():
             return redirect('/final')
     return render_template("upload2.html") 
 
+@app.route('/sticker',methods=['GET', 'POST'])
+def stickers():
+    return render_template('stickers.html')
+
+
+@app.route('/reqSticker',methods=['POST'])
+def reqSticker():
+    name = request.form.get('canvas_data')
+    print(name)
+    f = open("reqd_stickers.txt","w")
+    x = re.findall(r'[\d]+', name)
+    for i in x:
+        f.write(i)
+        f.write("\n")                                                        
+    f.close()
+    os.chdir(WORKING_FOLDER)
+    os.system("python addoffer.py") 
+
+
+@app.route('/dispSticker')
+def dispSticker():
+    return render_template("displaysticker.html")
+
+
+
+
+
 if __name__ == '__main__':
    app.run()

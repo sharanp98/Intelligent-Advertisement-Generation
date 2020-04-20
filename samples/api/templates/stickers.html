@@ -1,0 +1,73 @@
+<html>
+    <head>
+        
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+        </script>
+        <style>
+            .btn-group button {
+                background-color: #4CAF50; /* Green background */
+                border: 1px solid green; /* Green border */
+                color: white; /* White text */
+                padding: 10px 24px; /* Some padding */
+                cursor: pointer; /* Pointer/hand icon */
+                float: left; /* Float the buttons side by side */
+            }
+
+            /* Clear floats (clearfix hack) */
+            .btn-group:after {
+            content: "";
+            clear: both;
+            display: table;
+            }
+
+
+        </style>
+       
+
+    </head>
+
+    <body>
+        <h1>Select any sticker of your choice:</h1>
+        <div>
+            <button id="1"><img src="static/img/offers/offer1.png" alt="offer1" style="width:128px;height:128px;" /></button>
+            <button id='2'><img src="static/img/offers/offer2.png" alt="offer2" style="width:128px;height:128px;" /></button>
+            <button id='3'><img src="static/img/offers/offer3.png" alt="offer3" style="width:128px;height:128px;" /></button>
+            <button id='4'><img src="static/img/offers/offer4.png" alt="offer4" style="width:128px;height:128px;" /></button>
+            <button id='5'><img src="static/img/offers/offer5.png" alt="offer5" style="width:128px;height:128px;" /></button>
+          
+        </div>
+        <div class="btn-group" style="width:100%">
+            <button style="width:10%" id='01'>1</button>
+            <button style="width:10%" id='02'>2</button>
+            <button style="width:10%" id='03'>3</button>
+          </div>
+          <div class="btn-group" style="width:100%">
+            <button style="width:10%" id='04'>4</button>
+            <button style="width:10%" id='05'>5</button>
+            <button style="width:10%" id='06'>6</button>
+           </div>
+          <div class="btn-group" style="width:100%">
+            <button style="width:10%" id='07'>7</button>
+            <button style="width:10%" id='08'>8</button>
+            <button style="width:10%" id='09'>9</button>
+          </div>
+          <a id="send" href="{{ url_for('.dispSticker') }}" onclick="sendjson()"><button>Submit</button></a>
+        <script>
+            var reqd=[];
+            $("button").click(function() {
+                // var reqd=[];
+                reqd.push(this.id);
+                console.log(reqd);
+                
+            });
+            function sendjson() {
+                
+            $.post("reqSticker",
+			    {
+				    canvas_data: JSON.stringify(reqd)
+			    });
+            }
+        </script>
+        
+    </body>
+</html>
