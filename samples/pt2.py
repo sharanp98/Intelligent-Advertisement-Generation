@@ -45,7 +45,7 @@ for img in imgs:
 images = [Image.open(x) for x in imgs]
 widths, heights = zip(*(i.size for i in images))
 total_width = sum(widths) + (len(imgs)*20)
-max_height = max(heights)+80
+max_height = max(heights)+100
 new_im = Image.new('RGB', (total_width, max_height))
 x_offset = 20
 for i,im in enumerate(images):
@@ -75,8 +75,8 @@ def process_img(txt):
     fontsize = 1  # starting font size
 
     # portion of image width you want text width to be
-    img_fraction = 0.50
-    font_path = "/usr/share/fonts/truetype/freefont/AmaticSC-Regular.ttf"
+    img_fraction = 0.40
+    font_path = "/usr/share/fonts/truetype/freefont/Bison-Bold.ttf"
     font = ImageFont.truetype(font_path, fontsize)
     while font.getsize(txt)[0] < img_fraction*image.size[0]:
         # iterate until the text size is just larger than the criteria
@@ -89,7 +89,10 @@ def process_img(txt):
     # text_w, text_h = w//2, h-h//20
 
     print ('final font size',fontsize)
-    draw.text((10,25), txt, font=font) # put the text on the image
+    center = (w//2)-((img_fraction*w)//2)
+    print(center)
+    print(w//2)
+    draw.text((center,0), txt, font=font) # put the text on the image
     image.save('final.png') # save it
 process_img(offer)
-print('Success!')
+print('Success! Image saved')

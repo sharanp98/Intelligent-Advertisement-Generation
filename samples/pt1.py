@@ -74,7 +74,7 @@ for i in range(mask.shape[2]):
     new_val = 255
     temp[temp==old_val]=new_val
     plt.figure(figsize=(8,8))
-    plt.imshow(temp)
+    # plt.imshow(temp)
     plt.imsave(img_name,temp)
 
 labels = []
