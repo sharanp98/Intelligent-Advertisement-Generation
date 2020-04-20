@@ -1,0 +1,58 @@
+<html>
+    <head>
+        
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+        </script>
+        <style>
+            .btn-group button {
+                background-color: #4CAF50; /* Green background */
+                border: 1px solid green; /* Green border */
+                color: white; /* White text */
+                padding: 10px 24px; /* Some padding */
+                cursor: pointer; /* Pointer/hand icon */
+                float: left; /* Float the buttons side by side */
+            }
+
+            /* Clear floats (clearfix hack) */
+            .btn-group:after {
+            content: "";
+            clear: both;
+            display: table;
+            }
+
+
+        </style>
+       
+
+    </head>
+
+    <body>
+        <h1>Select any background of your choice:</h1>
+        <div>
+            <button id="bg1"><img src="static/img/backgrounds/bg1.jpg" alt="background1" style="width:128px;height:128px;" /></button>
+            <button id='bg2'><img src="static/img/backgrounds/bg2.jpg" alt="background2" style="width:128px;height:128px;" /></button>
+            <button id='bg3'><img src="static/img/backgrounds/bg3.jpg" alt="background3" style="width:128px;height:128px;" /></button>
+            <button id='bg4'><img src="static/img/backgrounds/bg4.jpg" alt="background4" style="width:128px;height:128px;" /></button>
+            <!-- <button id='5'><img src="static/img/backgrounds/bg5.png" alt="background5" style="width:128px;height:128px;" /></button> -->
+          
+        </div>
+          <a id="send" href="{{ url_for('.hello_admin') }}" onclick="sendjson()"><button>Submit</button></a>
+        <script>
+            var reqd=[];
+            $("button").click(function() {
+                // var reqd=[];
+                reqd.push(this.id);
+                console.log(reqd);
+                
+            });
+            function sendjson() {
+                
+            $.post("reqBackground",
+			    {
+				    canvas_data: JSON.stringify(reqd)
+			    });
+            }
+        </script>
+        
+    </body>
+</html>
