@@ -62,7 +62,7 @@ img=Image.fromarray(arr,mode='RGBA')
 img.save('./merged_transparent.png')
 
 img = Image.open("merged_transparent.png")
-background = Image.open("background.jpeg")
+background = Image.open("background.jpg")
 size = img.size
 background = background.resize(size,Image.ANTIALIAS)
 background.paste(img, (0, 0), img)

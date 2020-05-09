@@ -45,15 +45,15 @@ def hello_admin():
     print('In final')
     os.chdir(WORKING_FOLDER)
     #Delete previous output
-    # for file in os.listdir():
-    #     if file in ['labels.txt','reqd_images.txt','reqd_stickers.txt','reqd_backgrounds.txt']:
-    #         os.remove(file)
+    for file in os.listdir():
+        if file in ['labels.txt','reqd_images.txt','reqd_stickers.txt']:
+            os.remove(file)
    
     
     for file in os.listdir('segmented_images'):
         if file != 'background.jpeg':
             os.remove(os.path.join('segmented_images',file))
-    # os.system("python3 pt1.py")
+    os.system("python3 pt1.py")
     data = open('labels.txt').read().splitlines()
     return render_template("ListCategories.html",data=json.dumps(data))
 
@@ -68,7 +68,7 @@ def pass_val():
         f.write(i)
         f.write("\n")                                                          
     f.close()
-    # os.system("python3 pt2.py")
+    os.system("python3 pt2.py")
     try:
         os.remove("api/static/final.png")  
     except:
@@ -130,7 +130,7 @@ def reqSticker():
         f.write("\n")                                                        
     f.close()
     os.chdir(WORKING_FOLDER)
-    os.system("python addsticker.py") 
+    os.system("python3 addsticker.py") 
 
 
 @app.route('/dispSticker')
@@ -152,7 +152,7 @@ def reqBackground():
         f.write("\n")                                                        
     f.close()
     os.chdir(WORKING_FOLDER)
-    # os.system("python3 addbackground.py") 
+    os.system("python3 addbackground.py") 
 
 if __name__ == '__main__':
    app.run()
