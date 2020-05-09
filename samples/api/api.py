@@ -144,13 +144,13 @@ def backgrounds():
 @app.route('/reqBackground',methods=['POST'])
 def reqBackground():
     name = request.form.get('canvas_data')
-    print(name)
-    f = open("reqd_backgrounds.txt","w")
+    # print("Background name received at server is: "+name[0])
     x = re.findall(r'[\d]+', name)
-    for i in x:
-        f.write(i)
+    print("Background name received at server is: "+x[0])
+    print("rewd_backgrounds.txt is saved at: "+os.getcwd())
+    with open("reqd_backgrounds.txt","w") as f:
+        f.write(str(x[0]))
         f.write("\n")                                                        
-    f.close()
     os.chdir(WORKING_FOLDER)
     os.system("python3 addbackground.py") 
 
