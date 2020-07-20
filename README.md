@@ -1,4 +1,4 @@
-# INTELLIGENT ADVERTISEMENT GENERATION FOR E-COMMERCE WEBSITES.
+# Intelligent advertisement generation for e-commerce websites.
 
 Technology used : Image segmentation model built on top of Tensorflow Keras : [Mask RCNN](https://github.com/matterport/Mask_RCNN) and Python Image Processing. A website was built to demo the code using Python Flask.
 
@@ -7,11 +7,11 @@ $ conda create --name <env> --file requirements.txt
   
 There are other system dependent tools that need to be installed globally. That is beyond the scope of this README but active Googling will solve these extra dependencies.
 
-## RUN THE WEBSITE
+## Run the website
 $ cd samples/api
 $ python3 api.py
 
-## USE THE CODE
+## Use the code
 The code is divided into two parts : pt1.py and pt2.py
 
 - pt1.py (part 1) is the neural network part as all the images detected are extracted and saved in the *segmented_images* directory.
@@ -22,8 +22,8 @@ These files should be run in sequence as :
 python3 pt1.py
 python3 pt2.py
 
-## UNDERSTANDING THE FLOW
-### NEURAL NETWORKS (pt1.py)
+## Understanding the flow
+### Neural networks (pt1.py)
 #### Input Image :
 ![](assets/sample_input.png)
 Region Of Interest from the Mask RCNN Model :
@@ -34,7 +34,7 @@ First Image                |  Second Image
 :-------------------------:|:-------------------------:
 ![](assets/segmented_1.png)|  ![](assets/segmented_2.png)
 
-### IMAGE PROCESSING (pt2.py)
+### Image processing (pt2.py)
 
 Transparent background and trimming the image :
 - As images are an array of numbers, using the help of numpy module, the image background was converted to transparent background and stored as a png image
