@@ -9,6 +9,7 @@ There are other system dependent tools that need to be installed globally. That 
 
 ## Run the website
 $ cd samples/api
+
 $ python3 api.py
 
 ## Use the code
